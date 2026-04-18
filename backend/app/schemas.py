@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from typing import Optional
 
 # ==========================
@@ -12,10 +12,9 @@ class UserCreate(UserBase):
 
 class UserResponse(UserBase):
     id: int
-    
+    model_config = ConfigDict(from_attributes=True)  # This tells Pydantic to read data even if it's an SQLAlchemy model, not just a dict   
     # This tells Pydantic to read data even if it's an SQLAlchemy model, not just a dict
-    class Config:
-        from_attributes = True
+
 
 # ==========================
 # Task Schemas
@@ -36,9 +35,8 @@ class TaskUpdate(BaseModel):
 class TaskResponse(TaskBase):
     id: int
     owner_id: int
+    model_config = ConfigDict(from_attributes=True)  # This tells Pydantic to read data even if it's an SQLAlchemy model, not just a dict
 
-    class Config:
-        from_attributes = True
 
 # ==========================
 # Authentication Schemas
