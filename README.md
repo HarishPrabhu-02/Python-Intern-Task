@@ -60,4 +60,28 @@ docker run -p 8000:8000 task-api
 ```
 The API will be available at http://localhost:8000/docs.
 
-6. **Deployment Link:https://www.google.com/search?q=https://python-intern-task.onrender.com/docs**
+6. **Deployment Link:https://python-intern-task.onrender.com/docs**
+
+7. **How to Test in Swagger UI (/docs):**
+
+Since this API is secured with JWT Authentication, you must create a user and log in before you can manage tasks. 
+
+1. **Navigate to the Docs:** Open your live URL (e.g., `https://python-intern-task.onrender.com/docs`).
+2. **Register a User:**
+   * Scroll to the **`POST /auth/register`** endpoint and click it.
+   * Click the **"Try it out"** button.
+   * Change the JSON body to include a username and password:
+     ```json
+     {
+       "username": "testuser",
+       "password": "mysecurepassword"
+     }
+     ```
+   * Click **Execute**. You should see a `201 Created` response.
+3. **Authorize (Log in):**
+   * Scroll to the very top of the page and click the green **Authorize** button (padlock icon).
+   * Enter the exact `username` and `password` you just created. *(Leave client_id and client_secret blank).*
+   * Click **Authorize**, then click **Close**.
+4. **Test Protected Routes:**
+   * Swagger UI will now automatically attach your secure JWT token to all future requests! 
+   * Try going to **`POST /tasks/`**, clicking "Try it out", and executing a request to create your first task.
